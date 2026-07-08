@@ -348,7 +348,11 @@ a{color:inherit;text-decoration:none}
   text-transform:uppercase;font-size:.8rem;color:var(--red);margin-bottom:8px}
 .contact__cta h3{font-family:var(--head);font-size:clamp(1.5rem,2.4vw,1.9rem);color:var(--navy);
   margin:0 0 12px;letter-spacing:.4px;line-height:1.12}
-.cta__lead{color:var(--muted);font-size:1rem;line-height:1.55;margin:0 0 24px}
+.cta__lead{color:var(--muted);font-size:1rem;line-height:1.55;margin:0 0 18px}
+.cta__trust{position:relative;margin:0 0 22px;padding:14px 16px 14px 46px;
+  background:var(--tint);border-left:3px solid var(--gold);border-radius:8px;
+  font-size:.92rem;line-height:1.5;color:var(--navy)}
+.cta__trust-ico{position:absolute;left:14px;top:12px;font-size:1.1rem;line-height:1.3}
 .cta__actions{display:grid;gap:12px}
 .cta__ico{font-size:1.05em;line-height:1}
 .btn--wa{background:#25d366;color:#0b3d24;box-shadow:0 12px 26px -12px rgba(37,211,102,.75)}
@@ -371,6 +375,9 @@ a{color:inherit;text-decoration:none}
 .footer__addr{color:#8395af}
 .footer__bar{border-top:1px solid rgba(255,255,255,.1);font-size:.85rem;color:#8395af}
 .footer__bar-inner{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:16px 22px}
+.footer__credit{background:rgba(0,0,0,.25);padding:10px 22px;text-align:center;
+  font-size:.76rem;letter-spacing:.4px;color:#5f6f8a}
+.footer__credit strong{color:#8ea0bd;font-weight:600}
 
 /* ---------- Floating actions ---------- */
 .fab{position:fixed;right:20px;bottom:22px;width:56px;height:56px;border-radius:50%;
