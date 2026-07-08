@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://smlenterprises.in/sitemap.xml
+Sitemap: https://www.smlenterprises.in/sitemap.xml
