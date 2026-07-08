@@ -439,7 +439,10 @@ a{color:inherit;text-decoration:none}
   .team__list,.reg,.footer__inner,.band__inner{grid-template-columns:1fr}
   .pcard--tall,.pcard--wide{grid-row:auto;grid-column:auto}
   .proj-gallery{grid-auto-rows:210px}
-  .hero__stats{gap:22px 30px}
+  /* lift the hero content and add a bottom gutter so the floating WhatsApp
+     button never covers a stat on small screens */
+  .hero__inner{padding-top:10px;padding-bottom:104px}
+  .hero__stats{gap:18px 30px;margin-top:12px}
   .band .bstat{border-right:0;border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:18px}
   .band .bstat:last-child{border-bottom:0}
 }
