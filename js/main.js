@@ -89,9 +89,8 @@
   ];
   const track = $("#clientTrack");
   if (track) {
-    const card = ([n, c, logo, mark], i) => `
-      <article class="cli-card" role="listitem">
-        <span class="cli-card__idx">${String(i + 1).padStart(2, "0")}</span>
+    const card = ([n, c, logo, mark]) => `
+      <div class="cli-card" role="listitem">
         <div class="cli-card__plate">
           ${logo
             ? `<img src="assets/img/clients/${logo}" alt="${n} logo" loading="lazy">`
@@ -101,7 +100,7 @@
           <h3 class="cli-card__name">${n}</h3>
           <span class="cli-card__cat">${c}</span>
         </div>
-      </article>`;
+      </div>`;
     // duplicate the set so the scroll loops seamlessly (first half === second half)
     track.innerHTML = clients.map(card).join("") + clients.map(card).join("");
 
