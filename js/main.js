@@ -24,6 +24,12 @@
     burger.setAttribute("aria-expanded", open);
   });
   $$("#nav a").forEach(a => a.addEventListener("click", closeNav));
+  // close the mobile menu when tapping its empty backdrop, tapping outside, or pressing Escape
+  nav.addEventListener("click", e => { if (e.target === nav) closeNav(); });
+  document.addEventListener("click", e => {
+    if (nav.classList.contains("open") && !nav.contains(e.target) && !burger.contains(e.target)) closeNav();
+  });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && nav.classList.contains("open")) closeNav(); });
 
   /* ---------- Equipment list (verbatim from company profile) ---------- */
   const equipment = [
@@ -96,12 +102,58 @@
           <span class="cli-card__cat">${c}</span>
         </div>
       </article>`;
-    // duplicate the set so the auto-scroll loops seamlessly
+    // duplicate the set so the scroll loops seamlessly (first half === second half)
     track.innerHTML = clients.map(card).join("") + clients.map(card).join("");
 
-    // tap / click anywhere on the rail toggles pause (hover-pause handled in CSS)
+    // Auto-scroll that you can grab, drag or swipe. Pauses on hover / interaction.
     const rail = $("#cliRail");
-    rail.addEventListener("click", () => rail.classList.toggle("is-paused"));
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const SPEED = 0.6;                       // px per frame (~36px/s at 60fps)
+    let hovering = false, dragging = false, touchUntil = 0, moved = false;
+
+    const half = () => track.scrollWidth / 2;
+    const wrap = () => {                      // keep scrollLeft inside the first copy → infinite loop
+      const h = half();
+      if (rail.scrollLeft >= h) rail.scrollLeft -= h;
+      else if (rail.scrollLeft <= 0) rail.scrollLeft += h;
+    };
+    const tick = () => {
+      const paused = hovering || dragging || Date.now() < touchUntil || document.hidden;
+      if (!paused && !reduce) { rail.scrollLeft += SPEED; }
+      wrap();
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+
+    // hover pauses (desktop) so you can read / scroll manually
+    rail.addEventListener("mouseenter", () => hovering = true);
+    rail.addEventListener("mouseleave", () => hovering = false);
+
+    // click-drag to slide (mouse / pen). Touch uses native momentum scrolling.
+    let startX = 0, startScroll = 0;
+    const down = e => {
+      if (e.pointerType === "touch") { touchUntil = Date.now() + 4000; return; }
+      dragging = true; moved = false; startX = e.pageX; startScroll = rail.scrollLeft;
+      rail.classList.add("is-dragging"); rail.setPointerCapture?.(e.pointerId);
+    };
+    const move = e => {
+      if (!dragging) return;
+      const dx = e.pageX - startX;
+      if (Math.abs(dx) > 3) moved = true;
+      rail.scrollLeft = startScroll - dx; wrap();
+    };
+    const up = () => {
+      if (!dragging) return;
+      dragging = false; rail.classList.remove("is-dragging");
+    };
+    rail.addEventListener("pointerdown", down);
+    rail.addEventListener("pointermove", move);
+    rail.addEventListener("pointerup", up);
+    rail.addEventListener("pointercancel", up);
+    // keep auto-scroll paused briefly after a touch swipe, then resume
+    rail.addEventListener("touchmove", () => touchUntil = Date.now() + 4000, { passive: true });
+    // don't let a drag trigger a card's click
+    rail.addEventListener("click", e => { if (moved) { e.preventDefault(); e.stopPropagation(); } }, true);
   }
 
   /* ---------- Logo marquee (immediate trust bar) — reuses client data ---------- */
