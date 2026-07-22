@@ -109,7 +109,7 @@ a{color:inherit;text-decoration:none}
 /* ---------- Hero ---------- */
 .hero{position:relative;min-height:min(92vh,760px);display:flex;align-items:center;
   background-size:cover;background-position:center;color:#fff;overflow:hidden}
-.hero__overlay{position:absolute;inset:0;
+.hero__overlay{position:absolute;top:0;right:0;bottom:0;left:0;
   background:linear-gradient(105deg,rgba(9,20,38,.94) 8%,rgba(12,28,51,.82) 42%,rgba(12,28,51,.42) 100%)}
 .hero__inner{position:relative;padding-top:64px;padding-bottom:64px;max-width:830px}
 .hero__eyebrow{font-family:var(--head);font-weight:600;letter-spacing:2px;text-transform:uppercase;
@@ -170,7 +170,7 @@ a{color:inherit;text-decoration:none}
   border:1px solid var(--line);transition:.28s}
 .svc:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
 .svc__img{height:172px;background-size:cover;background-position:center;position:relative}
-.svc__img::after{content:"";position:absolute;inset:0;
+.svc__img::after{content:"";position:absolute;top:0;right:0;bottom:0;left:0;
   background:linear-gradient(to top,rgba(13,28,51,.5),transparent 55%)}
 .svc__body{padding:20px 20px 24px}
 .svc__body h3{font-family:var(--head);font-weight:700;font-size:1.5rem;color:var(--navy);
@@ -232,7 +232,7 @@ a{color:inherit;text-decoration:none}
 .pcard:hover img{transform:scale(1.08)}
 .pcard span{position:absolute;left:12px;bottom:11px;z-index:2;color:#fff;font-family:var(--head);
   font-weight:600;font-size:1.05rem;letter-spacing:.5px;text-shadow:0 2px 8px rgba(0,0,0,.6)}
-.pcard::after{content:"";position:absolute;inset:0;
+.pcard::after{content:"";position:absolute;top:0;right:0;bottom:0;left:0;
   background:linear-gradient(to top,rgba(9,20,38,.85),transparent 60%);transition:.3s}
 .pcard:hover::after{background:linear-gradient(to top,rgba(224,35,28,.35),rgba(9,20,38,.55))}
 .pcard--tall{grid-row:span 2}
@@ -377,7 +377,7 @@ a{color:inherit;text-decoration:none}
   transition:.25s}
 .fab--wa{background:#25d366}
 .fab--wa:hover{transform:scale(1.08)}
-.fab--wa::after{content:"";position:absolute;inset:0;border-radius:50%;
+.fab--wa::after{content:"";position:absolute;top:0;right:0;bottom:0;left:0;border-radius:50%;
   box-shadow:0 0 0 0 rgba(37,211,102,.5);animation:pulse 2.4s infinite}
 @keyframes pulse{70%{box-shadow:0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
 .totop{position:fixed;left:20px;bottom:22px;width:46px;height:46px;border-radius:50%;border:0;
@@ -387,7 +387,7 @@ a{color:inherit;text-decoration:none}
 .totop:hover{background:var(--red)}
 
 /* ---------- Lightbox ---------- */
-.lightbox{position:fixed;inset:0;background:rgba(8,16,30,.94);z-index:100;display:none;
+.lightbox{position:fixed;top:0;right:0;bottom:0;left:0;background:rgba(8,16,30,.94);z-index:100;display:none;
   align-items:center;justify-content:center;padding:40px}
 .lightbox.open{display:flex}
 .lightbox img{max-width:90vw;max-height:82vh;border-radius:8px;box-shadow:0 30px 80px -20px #000}
